@@ -13,8 +13,19 @@ export default defineConfig(({ mode }) => {
       },
     },
     define: {
-      'process.env.SUPABASE_URL': JSON.stringify(env.SUPABASE_URL || env.VITE_SUPABASE_URL || ''),
-      'process.env.SUPABASE_ANON_KEY': JSON.stringify(env.SUPABASE_ANON_KEY || env.VITE_SUPABASE_ANON_KEY || ''),
+      'process.env.SUPABASE_URL': JSON.stringify(
+        env.SUPABASE_URL || 
+        env.VITE_SUPABASE_URL || 
+        env.NEXT_PUBLIC_SUPABASE_URL || 
+        ''
+      ),
+      'process.env.SUPABASE_ANON_KEY': JSON.stringify(
+        env.SUPABASE_ANON_KEY || 
+        env.VITE_SUPABASE_ANON_KEY || 
+        env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 
+        env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 
+        ''
+      ),
     },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
