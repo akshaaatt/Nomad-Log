@@ -32,6 +32,7 @@ import {
   BookOpen
 } from 'lucide-react';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import TravelMap from './components/TravelMap';
 import TravelForm from './components/TravelForm';
 import RouteForm from './components/RouteForm';
@@ -1766,6 +1767,7 @@ export default function App() {
       </div>
 
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
