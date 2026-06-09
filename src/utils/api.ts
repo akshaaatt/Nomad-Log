@@ -164,10 +164,12 @@ export const api = {
 
   // Trigger Google Sign-In redirect flow
   async loginWithGoogle(): Promise<void> {
+    // Always redirect to the canonical domain, never to a preview deployment URL
+    const canonicalOrigin = 'https://nomad-log.vercel.app';
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
-        redirectTo: window.location.origin
+        redirectTo: canonicalOrigin
       }
     });
     if (error) {

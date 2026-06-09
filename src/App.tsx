@@ -40,6 +40,7 @@ import TravelStatistics from './components/TravelStatistics';
 import { TravelLocation, TravelCategory, MapSettings, TravelRoute } from './types';
 import { INITIAL_TRAVEL_LOCATIONS } from './data';
 import { api, User } from './utils/api';
+import { supabase } from './utils/supabaseClient';
 import { translations, AppLanguage } from './utils/translations';
 
 export default function App() {
@@ -62,25 +63,36 @@ export default function App() {
 
   // Initialize auth session check on mount
   useEffect(() => {
-    async function loadSession() {
-      try {
-        const user = await api.me();
-        if (user) {
-          setCurrentUser(user);
+    // Listen for auth state changes (covers persisted sessions + OAuth callbacks)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, session) => {
+      if (session?.user) {
+        const u = session.user;
+        const user = {
+          id: u.id,
+          username: u.user_metadata?.username || u.email?.split('@')[0] || 'Traveller'
+        };
+        setCurrentUser(user);
+        try {
           const [locs, rts] = await Promise.all([
             api.getLocations(),
             api.getRoutes()
           ]);
           setLocations(locs);
           setRoutes(rts);
+        } catch (err) {
+          console.error('Failed loading user data', err);
         }
-      } catch (err) {
-        console.error('Failed checking active travel session', err);
-      } finally {
-        setIsLoadingUser(false);
+      } else if (event === 'SIGNED_OUT') {
+        setCurrentUser(null);
+        setLocations([]);
+        setRoutes([]);
+        setSelectedLocation(null);
+        setSelectedRouteId(null);
       }
-    }
-    loadSession();
+      setIsLoadingUser(false);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   // Sync selectedLocation on locations load or changes
