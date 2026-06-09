@@ -83,41 +83,6 @@ export default function App() {
     loadSession();
   }, []);
 
-  // Listen for Google OAuth callback success from popups
-  useEffect(() => {
-    const handleMessage = async (event: MessageEvent) => {
-      const origin = event.origin;
-      if (!origin.endsWith('.run.app') && !origin.includes('localhost') && !origin.includes('0.0.0.0')) {
-        return;
-      }
-      if (event.data?.type === 'OAUTH_AUTH_SUCCESS' && event.data.token) {
-        const token = event.data.token;
-        const user = event.data.user;
-        localStorage.setItem('travel_session_token', token);
-        setCurrentUser(user);
-        setSuccessMsg(`Authenticated successfully as ${user.username}!`);
-        setIsLoadingUser(true);
-        try {
-          const [locs, rts] = await Promise.all([
-            api.getLocations(),
-            api.getRoutes()
-          ]);
-          setLocations(locs);
-          setRoutes(rts);
-          if (locs.length > 0) {
-            setSelectedLocation(locs[0]);
-          }
-        } catch (err) {
-          console.error("Error loading travel logs after Google Sign-In:", err);
-        } finally {
-          setIsLoadingUser(false);
-        }
-      }
-    };
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
-
   // Sync selectedLocation on locations load or changes
   const [selectedLocation, setSelectedLocation] = useState<TravelLocation | null>(null);
   useEffect(() => {
@@ -525,35 +490,15 @@ export default function App() {
     }
   };
 
-  // Google Sign-In Popup handler
+  // Google Sign-In redirect handler
   const handleGoogleSignIn = async () => {
     setIsAuthSubmitting(true);
     setAuthError('');
     try {
-      const response = await fetch('/api/auth/google/url');
-      if (!response.ok) {
-        throw new Error('Could not fetch Google Sign-In endpoint.');
-      }
-      const data = await response.json();
-      
-      const width = 500;
-      const height = 650;
-      const left = window.screen.width / 2 - width / 2;
-      const top = window.screen.height / 2 - height / 2;
-      
-      const popup = window.open(
-        data.url,
-        'google_oauth_popup',
-        `width=${width},height=${height},left=${left},top=${top},status=no,resizable=yes,scrollbars=yes`
-      );
-
-      if (!popup) {
-        setAuthError('Sign-In pop-up was blocked. Please enable popups in your browser and try again.');
-      }
+      await api.loginWithGoogle();
     } catch (err: any) {
       console.error(err);
       setAuthError(err.message || 'Failed to initiate Google authentication.');
-    } finally {
       setIsAuthSubmitting(false);
     }
   };
