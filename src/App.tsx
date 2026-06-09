@@ -31,6 +31,7 @@ import {
   ExternalLink,
   BookOpen
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 import TravelMap from './components/TravelMap';
 import TravelForm from './components/TravelForm';
 import RouteForm from './components/RouteForm';
@@ -1764,6 +1765,7 @@ export default function App() {
         </button>
       </div>
 
+      <Analytics />
     </div>
   );
 }
