@@ -3,11 +3,125 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Travel Map Visualizer & Review Log</title>
+
+    <!-- ═══════════════════════════════════════════
+         PRIMARY META
+    ════════════════════════════════════════════ -->
+    <title>The Nomad Log — Personal Travel Journal & World Map Tracker</title>
+    <meta name="description" content="Track every place you've visited, plan your travel wishlist, and log personal travel memoirs on an interactive world map. Your private cartography journal — secure, cloud-synced, and beautifully designed." />
+    <meta name="keywords" content="travel journal, travel map, travel tracker, world map pins, visited countries, travel wishlist, travel log, personal cartography, trip planner, travel diary, nomad" />
+    <meta name="author" content="The Nomad Log" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#1A1A1A" />
+    <meta name="color-scheme" content="light" />
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://nomad-log.vercel.app/" />
+
+    <!-- ═══════════════════════════════════════════
+         OPEN GRAPH (Facebook, LinkedIn, WhatsApp)
+    ════════════════════════════════════════════ -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="The Nomad Log" />
+    <meta property="og:title" content="The Nomad Log — Personal Travel Journal & World Map Tracker" />
+    <meta property="og:description" content="Track every place you've visited, plan your travel wishlist, and log personal travel memoirs on an interactive world map. Secure, cloud-synced, and beautifully designed." />
+    <meta property="og:url" content="https://nomad-log.vercel.app/" />
+    <meta property="og:image" content="https://nomad-log.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="The Nomad Log — Personal Cartography Service" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- ═══════════════════════════════════════════
+         TWITTER / X CARD
+    ════════════════════════════════════════════ -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@nomadlog" />
+    <meta name="twitter:creator" content="@nomadlog" />
+    <meta name="twitter:title" content="The Nomad Log — Personal Travel Journal & World Map Tracker" />
+    <meta name="twitter:description" content="Track every place you've visited, plan your travel wishlist, and log personal travel memoirs on an interactive world map." />
+    <meta name="twitter:image" content="https://nomad-log.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="The Nomad Log — Personal Cartography Service" />
+
+    <!-- ═══════════════════════════════════════════
+         FAVICON & ICONS
+    ════════════════════════════════════════════ -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/og-image.png" />
+    <meta name="msapplication-TileColor" content="#1A1A1A" />
+
+    <!-- ═══════════════════════════════════════════
+         PWA / MANIFEST
+    ════════════════════════════════════════════ -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="application-name" content="The Nomad Log" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Nomad Log" />
+
+    <!-- ═══════════════════════════════════════════
+         STRUCTURED DATA — WebApplication
+    ════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "The Nomad Log",
+      "url": "https://nomad-log.vercel.app/",
+      "description": "A personal travel journal and world map tracker. Log visited places, write travel reviews, plan wishlists, and chart travel routes — all secured under your private profile.",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "Any",
+      "browserRequirements": "Requires JavaScript. Requires a modern browser.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Interactive world map with location pins",
+        "Travel journal with reviews and ratings",
+        "Wishlist planning with budget estimates",
+        "Travel route charting",
+        "Cloud-synced across devices",
+        "Export and import travel data"
+      ],
+      "image": "https://nomad-log.vercel.app/og-image.png",
+      "screenshot": "https://nomad-log.vercel.app/og-image.png",
+      "author": {
+        "@type": "Person",
+        "name": "Akshat Tiwari"
+      }
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════
+         STRUCTURED DATA — BreadcrumbList
+    ════════════════════════════════════════════ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://nomad-log.vercel.app/"
+        }
+      ]
+    }
+    </script>
+
+    <!-- ═══════════════════════════════════════════
+         PERFORMANCE HINTS
+    ════════════════════════════════════════════ -->
+    <link rel="preconnect" href="https://yvudmslartddeuznhnop.supabase.co" />
+    <link rel="preconnect" href="https://nominatim.openstreetmap.org" />
+    <link rel="preconnect" href="https://tile.openstreetmap.org" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

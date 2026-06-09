@@ -1,0 +1,29 @@
+{
+  "name": "The Nomad Log",
+  "short_name": "Nomad Log",
+  "description": "Your personal travel journal and world map tracker. Log visited places, plan wishlists, and chart travel routes.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9F8F6",
+  "theme_color": "#1A1A1A",
+  "orientation": "any",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["travel", "lifestyle", "productivity"],
+  "icons": [
+    {
+      "src": "/og-image.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "The Nomad Log — Interactive World Map"
+    }
+  ]
+}
