@@ -1,0 +1,6 @@
+{
+  "name": "Travel Map Visualizer",
+  "description": "An interactive map dashboard to track visited countries and cities, write reviews, flag places to avoid, and plan future travel wishlist targets.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
